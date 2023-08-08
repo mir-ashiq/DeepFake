@@ -42,10 +42,10 @@ def index():
     
     return render_template('index.html')
 
-@app.route('/output/<filename>')
+@app.route('/output_files/<filename>')
 def output(filename):
     return render_template('output.html', filename=filename)
-@app.route('/output_image/<filename>')
+@app.route('/output_files/<filename>')
 def output_image(filename):
     return app.send_static_file(os.path.join(app.config['OUTPUT_FOLDER'], filename))
 
