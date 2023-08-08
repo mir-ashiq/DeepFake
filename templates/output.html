@@ -122,8 +122,19 @@
 <body>
     <div class="container">
         <h1>Generated Image</h1>
-        <div class="image-container">
-            <img src="{{ url_for('output_files', filename='filename') }}" alt="Generated Image" onclick="toggleImageSize(this)">
+        <div class="container">
+        <h1>Generated Output</h1>
+        <div class="output-container">
+            {% if filename.endswith('.jpg') or filename.endswith('.png') or filename.endswith('.jpeg') %}
+                <img src="{{ url_for('output_files', filename=filename) }}" alt="Generated Image" onclick="toggleImageSize(this)">
+            {% elif filename.endswith('.mp4') or filename.endswith('.avi') or filename.endswith('.mov') %}
+                <video controls>
+                    <source src="{{ url_for('output_files', filename=filename) }}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            {% else %}
+                <p>Unsupported file format: {{ filename }}</p>
+            {% endif %}
         </div>
         <div class="button-container">
             <a href="/output_files/output.png" class="btn btn-success" onclick="downloadImage()"><i class="fas fa-download"></i> Download Image</a>
