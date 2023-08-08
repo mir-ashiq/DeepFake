@@ -121,9 +121,9 @@
 </head>
 <body>
     <div class="container">
-        <h1>Generated Image</h1>
+        <h1>Swapped Image/Video</h1>
         <div class="container">
-        <h1>Generated Output</h1>
+        <h1>Swapped Output</h1>
         <div class="output-container">
             {% if filename.endswith('.jpg') or filename.endswith('.png') or filename.endswith('.jpeg') %}
                 <img src="{{ url_for('output_files', filename=filename) }}" alt="Generated Image" onclick="toggleImageSize(this)">
@@ -137,11 +137,9 @@
             {% endif %}
         </div>
         <div class="button-container">
-            <a href="/output_files/output.png" class="btn btn-success" onclick="downloadImage()"><i class="fas fa-download"></i> Download Image</a>
-        </div>
-        <div class="image-details">
-            <p>Image Size: 1200x800 pixels</p>
-            <p>File Format: JPEG</p>
+            <a href="{{ url_for('download_output', filename=filename) }}" class="btn btn-success">
+                <i class="fas fa-download"></i> Download Swapped
+            </a>
         </div>
         <div class="social-buttons">
             <span class="social-button">
