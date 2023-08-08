@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image and Video Processing</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        #container {
+            width: 90%;
+            max-width: 800px;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333333;
+            margin-bottom: 30px;
+        }
+        label {
+            font-weight: bold;
+            color: #444444;
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="file"] {
+            display: block;
+            margin-bottom: 15px;
+            width: 100%;
+        }
+        input[type="checkbox"] {
+            margin-right: 8px;
+        }
+        input[type="submit"] {
+            background-color: #4285f4;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+        input[type="submit"]:hover {
+            background-color: #2a75d7;
+        }
+        #preview {
+            text-align: center;
+            margin-top: 20px;
+        }
+        #preview img {
+            max-width: 100%;
+            max-height: 300px;
+            margin-top: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    </style>
+    <script>
+        function previewImage(input, previewId) {
+            var preview = document.getElementById(previewId);
+            var file = input.files[0];
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+                var image = new Image();
+                image.src = e.target.result;
+                preview.innerHTML = '';
+                preview.appendChild(image);
+            };
+
+            reader.readAsDataURL(file);
+        }
+    </script>
+</head>
+<body>
+    <div id="container">
+        <h1>Image and Video Processing</h1>
+        <form method="post" enctype="multipart/form-data">
+            <label for="source">Upload Source Image/Video:</label>
+            <input type="file" id="source" name="source" onchange="previewImage(this, 'sourcePreview')">
+            <div id="sourcePreview"></div>
+
+            <label for="target">Upload Target Image/Video:</label>
+            <input type="file" id="target" name="target" onchange="previewImage(this, 'targetPreview')">
+            <div id="targetPreview"></div>
+
+            <label>Frame Processors:</label>
+            <div style="display: flex; align-items: center;">
+                <input type="checkbox" id="face_swapper" name="frame_processor" value="face_swapper">
+                <label for="face_swapper">Face Swapper</label>
+            </div>
+            <div style="display: flex; align-items: center;">
+                <input type="checkbox" id="face_enhancer" name="frame_processor" value="face_enhancer">
+                <label for="face_enhancer">Face Enhancer</label>
+            </div>
+
+            <div style="text-align: center; margin-top: 25px;">
+                <input type="submit" value="Process">
+            </div>
+        </form>
+    </div>
+</body>
+</html>

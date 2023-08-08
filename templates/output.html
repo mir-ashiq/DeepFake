@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Output</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        #container {
+            width: 90%;
+            max-width: 800px;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333333;
+            margin-bottom: 30px;
+        }
+        #outputImage {
+            text-align: center;
+            margin-top: 20px;
+        }
+        #outputImage img {
+            max-width: 100%;
+            max-height: 300px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        #backButton {
+            text-align: center;
+            margin-top: 25px;
+        }
+        #backButton a {
+            text-decoration: none;
+            background-color: #4285f4;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        #backButton a:hover {
+            background-color: #2a75d7;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1>Output</h1>
+        <div id="outputImage">
+            <img src="{{ url_for('output_image', filename=filename) }}" alt="Output Image">
+        </div>
+        <div id="backButton">
+            <a href="/">Back to Processing</a>
+        </div>
+    </div>
+</body>
+</html>
